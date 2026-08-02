@@ -50,13 +50,11 @@ mavenPublishing {
   publishToMavenCentral(automaticRelease = true, validateDeployment = DeploymentValidation.VALIDATED)
   signAllPublications()
 
-  // TODO fixup pom
   pom {
     name.set("DeDebug Gradle Plugin")
     description.set(extra["desc"].toString())
     inceptionYear.set("2026")
-    //url.set("https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin")
-    url.set("TODO")
+    url.set("https://github.com/autonomousapps/dedebug")
     licenses {
       license {
         name.set("The Apache License, Version 2.0")
@@ -72,9 +70,9 @@ mavenPublishing {
       }
     }
     scm {
-      //url.set("https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin")
-      //connection.set("scm:git:git://github.com/autonomousapps/dependency-analysis-android-gradle-plugin.git")
-      //developerConnection.set("scm:git:ssh://github.com/autonomousapps/dependency-analysis-android-gradle-plugin.git")
+      url.set("https://github.com/autonomousapps/dedebug")
+      connection.set("scm:git:git://github.com/autonomousapps/dedebug.git")
+      developerConnection.set("scm:git:ssh://github.com/autonomousapps/dedebug.git")
     }
   }
 }
