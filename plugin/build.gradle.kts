@@ -18,15 +18,15 @@ group = "com.autonomousapps.dedebug"
 version = "0.1-SNAPSHOT"
 
 extra["desc"] = "Disables the debug build type in your Android libraries"
-description = extra["desc"].toString()
+description = extra["desc"] as String
 
 gradlePlugin {
   plugins.create("com.autonomousapps.dedebug") {
     implementationClass = "com.autonomousapps.dedebug.DeDebugSettingsPlugin"
 
     displayName = "DeDebug Gradle Plugin"
-    description = extra["desc"].toString()
-    tags.set(listOf("android"))
+    description = extra["desc"] as String
+    tags = listOf("android")
 
     compatibility {
       features {
@@ -46,48 +46,17 @@ tapmoc {
   checkKotlinStdlibs(Severity.ERROR)
 }
 
-mavenPublishing {
-  publishToMavenCentral(automaticRelease = true, validateDeployment = DeploymentValidation.VALIDATED)
-  signAllPublications()
-
-  pom {
-    name.set("DeDebug Gradle Plugin")
-    description.set(extra["desc"].toString())
-    inceptionYear.set("2026")
-    url.set("https://github.com/autonomousapps/dedebug")
-    licenses {
-      license {
-        name.set("The Apache License, Version 2.0")
-        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-        distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-      }
-    }
-    developers {
-      developer {
-        id.set("autonomousapps")
-        name.set("Tony Robalik")
-        url.set("https://github.com/autonomousapps")
-      }
-    }
-    scm {
-      url.set("https://github.com/autonomousapps/dedebug")
-      connection.set("scm:git:git://github.com/autonomousapps/dedebug.git")
-      developerConnection.set("scm:git:ssh://github.com/autonomousapps/dedebug.git")
-    }
-  }
-}
-
-gradleTestKitSupport {
-  withSupportLibrary()
-}
-
 tasks {
   withType<Test>().configureEach {
     useJUnitPlatform()
   }
   withType<ValidatePlugins>().configureEach {
-    enableStricterValidation.set(true)
+    enableStricterValidation = true
   }
+}
+
+gradleTestKitSupport {
+  withSupportLibrary()
 }
 
 dependencies {
@@ -110,6 +79,37 @@ dependencies {
 
   functionalTestRuntimeOnly(libs.junit.engine)
   functionalTestRuntimeOnly(libs.junit.launcher)
+}
+
+mavenPublishing {
+  publishToMavenCentral(automaticRelease = true, validateDeployment = DeploymentValidation.VALIDATED)
+  signAllPublications()
+
+  pom {
+    name = "DeDebug Gradle Plugin"
+    description = extra["desc"] as String
+    inceptionYear = "2026"
+    url = "https://github.com/autonomousapps/dedebug"
+    licenses {
+      license {
+        name = "The Apache License, Version 2.0"
+        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      }
+    }
+    developers {
+      developer {
+        id = "autonomousapps"
+        name = "Tony Robalik"
+        url = "https://github.com/autonomousapps"
+      }
+    }
+    scm {
+      url = "https://github.com/autonomousapps/dedebug"
+      connection = "scm:git:git://github.com/autonomousapps/dedebug.git"
+      developerConnection = "scm:git:ssh://github.com/autonomousapps/dedebug.git"
+    }
+  }
 }
 
 dependencyAnalysis {
