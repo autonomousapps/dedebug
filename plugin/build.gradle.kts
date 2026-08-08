@@ -50,6 +50,13 @@ tasks {
   withType<Test>().configureEach {
     useJUnitPlatform()
   }
+  functionalTest {
+    addTestListener(object : TestListener {
+      override fun beforeTest(testDescriptor: TestDescriptor) {
+        logger.lifecycle("Running test: $testDescriptor")
+      }
+    })
+  }
   withType<ValidatePlugins>().configureEach {
     enableStricterValidation = true
   }
