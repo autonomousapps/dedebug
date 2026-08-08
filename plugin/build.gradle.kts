@@ -17,6 +17,9 @@ plugins {
 group = "com.autonomousapps.dedebug"
 version = "0.1-SNAPSHOT"
 
+val isSnapshot: Boolean = version.toString().endsWith("SNAPSHOT")
+val isRelease: Boolean = !isSnapshot
+
 extra["desc"] = "Disables the debug build type in your Android libraries"
 description = extra["desc"] as String
 
@@ -116,6 +119,35 @@ mavenPublishing {
       connection = "scm:git:git://github.com/autonomousapps/dedebug.git"
       developerConnection = "scm:git:ssh://github.com/autonomousapps/dedebug.git"
     }
+  }
+}
+
+val publishToMavenCentral = tasks.named("publishToMavenCentral") {
+  configureForRelease()
+}
+
+val publishToPluginPortal = tasks.named("publishPlugins") {
+  val key = "is-release"
+  inputs.property(key, isRelease)
+  // Can't publish snapshots to the portal
+  onlyIf("only publish releases to the plugin portal") {
+    inputs.properties[key] as Boolean
+  }
+
+  shouldRunAfter(publishToMavenCentral)
+  configureForRelease()
+}
+
+tasks.register("publishEverywhere") {
+  dependsOn(publishToMavenCentral, publishToPluginPortal)
+
+  group = "publishing"
+  description = "Publishes to Plugin Portal and Maven Central"
+}
+
+fun Task.configureForRelease() {
+  if (isRelease) {
+    dependsOn(tasks.check)
   }
 }
 
