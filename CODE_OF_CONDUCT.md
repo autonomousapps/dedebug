@@ -22,7 +22,7 @@ Examples of unacceptable behavior by participants include:
 - Publishing others' private information, such as a physical or electronic address, without explicit permission.
 - Discussing this Code of Conduct or publicly accusing someone of violating it.
 - Making someone else feel like an outsider or implying a lack of technical abilities.
-- Destructive behavior. Anything that harms The Dependency Analysis Gradle Plugin or another open-source project.
+- Destructive behavior. Anything that harms The DeDebug Gradle Plugin or another open-source project.
 
 ### Strict No LLM / No AI Policy
 

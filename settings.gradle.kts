@@ -35,7 +35,7 @@ dependencyResolutionManagement {
 
 develocity {
   val isCI = providers.environmentVariable("CI").isPresent
-  val isEnabled = providers.gradleProperty("dependency.analysis.scans.publish").getOrElse("false").toBoolean()
+  val isEnabled = providers.gradleProperty("autonomousapps.scans.publish").getOrElse("false").toBoolean()
 
   buildScan {
     publishing.onlyIf { isCI || isEnabled }
