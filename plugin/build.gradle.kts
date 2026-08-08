@@ -1,5 +1,7 @@
 // Copyright (c) 2026. Tony Robalik.
 // SPDX-License-Identifier: Apache-2.0
+@file:Suppress("UnstableApiUsage")
+
 import com.vanniktech.maven.publish.DeploymentValidation
 import org.gradle.plugin.compatibility.compatibility
 import tapmoc.Severity
