@@ -108,8 +108,8 @@ public abstract class DeDebugSettingsPlugin : Plugin<Settings> {
     val sp = gradle.startParameter
 
     val mapper = TaskRequestMapper(sp.taskRequests)
-    val newTaskRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newTaskRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     sp.setTaskRequests(newTaskRequests)
 

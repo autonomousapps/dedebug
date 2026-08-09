@@ -5,13 +5,27 @@ package com.autonomousapps.dedebug.internal
 import org.gradle.TaskExecutionRequest
 import org.gradle.internal.DefaultTaskExecutionRequest
 
-internal class TaskRequestMapper(private val requests: List<TaskExecutionRequest>) {
+internal class TaskRequestMapper(
+  /** Original, user-provided task execution requests. */
+  private val requests: List<TaskExecutionRequest>,
+) {
 
-  private val requestedTests = mutableListOf<String>()
+  private val _requestedTests = mutableListOf<String>()
 
-  fun requestedTests(): List<String> = requestedTests
+  /**
+   * Maps [requests] by stripping any `--tests <tests>` and `--tests=<tests>` arguments. Those requests tests are
+   * available in [requestedTests].
+   */
+  val mappedRequests: List<TaskExecutionRequest> = map()
 
-  fun map(): List<TaskExecutionRequest> {
+  /**
+   * User-requested tests from `--tests <tests>` and `--tests=<tests>`. Handles multiples.
+   *
+   * @see [mappedRequests]
+   */
+  val requestedTests: List<String> by lazy(LazyThreadSafetyMode.NONE) { _requestedTests.toList() }
+
+  private fun map(): List<TaskExecutionRequest> {
     var isTests = false
 
     return requests.map { request ->
@@ -21,7 +35,7 @@ internal class TaskRequestMapper(private val requests: List<TaskExecutionRequest
             when {
               isTests -> {
                 isTests = false
-                requestedTests.add(arg)
+                _requestedTests.add(arg)
                 null // remove this arg
               }
 
@@ -29,7 +43,7 @@ internal class TaskRequestMapper(private val requests: List<TaskExecutionRequest
               arg.startsWith("--tests") -> {
                 if (arg.startsWith("--tests=")) {
                   // the argument is `--tests=TestToRun`, so the test request is part of THIS arg
-                  requestedTests.add(arg.substringAfter("--tests="))
+                  _requestedTests.add(arg.substringAfter("--tests="))
                 } else {
                   // parse the next argument as the test request
                   isTests = true

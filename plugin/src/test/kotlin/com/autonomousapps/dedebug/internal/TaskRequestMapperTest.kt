@@ -29,8 +29,8 @@ internal class TaskRequestMapperTest {
     val mapper = TaskRequestMapper(taskRequests)
 
     // When
-    val newRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     // Then
     assertThat(newRequests).isEqualTo(taskRequests)
@@ -45,8 +45,8 @@ internal class TaskRequestMapperTest {
     val mapper = TaskRequestMapper(taskRequests)
 
     // When
-    val newRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     // Then
     assertThat(newRequests).isEqualTo(listOf(DefaultTaskExecutionRequest.of(listOf(":foo:bar:test", "bar:baz:help"))))
@@ -61,8 +61,8 @@ internal class TaskRequestMapperTest {
     val mapper = TaskRequestMapper(taskRequests)
 
     // When
-    val newRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     // Then
     assertThat(newRequests).isEqualTo(listOf(DefaultTaskExecutionRequest.of(listOf(":foo:bar:test", "bar:baz:help"))))
@@ -78,8 +78,8 @@ internal class TaskRequestMapperTest {
     val mapper = TaskRequestMapper(taskRequests)
 
     // When
-    val newRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     // Then
     assertThat(newRequests).isEqualTo(listOf(DefaultTaskExecutionRequest.of(listOf(":foo:bar:test"))))
@@ -94,8 +94,8 @@ internal class TaskRequestMapperTest {
     val mapper = TaskRequestMapper(taskRequests)
 
     // When
-    val newRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     // Then
     assertThat(newRequests).isEqualTo(listOf(DefaultTaskExecutionRequest.of(listOf(":foo:bar:test"))))
@@ -111,8 +111,8 @@ internal class TaskRequestMapperTest {
     val mapper = TaskRequestMapper(taskRequests)
 
     // When
-    val newRequests = mapper.map()
-    val requestedTests = mapper.requestedTests()
+    val newRequests = mapper.mappedRequests
+    val requestedTests = mapper.requestedTests
 
     // Then
     assertThat(newRequests).isEqualTo(
