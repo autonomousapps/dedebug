@@ -114,6 +114,7 @@ public abstract class DeDebugPlugin : Plugin<Project> {
   private fun Project.registerShimUnitTest(variantName: String) {
     val taskName = "test${variantName.capitalize()}UnitTest"
     val preferredTask = taskName.replace(DEBUG.capitalize(), RELEASE.capitalize())
+    
     tasks.register(taskName) { t ->
       t.group = LifecycleBasePlugin.VERIFICATION_GROUP
       t.description = "(Deprecated: use 'test' instead) Run unit tests."
