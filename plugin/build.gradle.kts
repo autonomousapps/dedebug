@@ -26,7 +26,8 @@ extra["desc"] = "Disables the debug build type in your Android libraries"
 description = extra["desc"] as String
 
 gradlePlugin {
-  plugins.create("com.autonomousapps.dedebug") {
+  plugins.create("dedebug") {
+    id = "com.autonomousapps.dedebug"
     implementationClass = "com.autonomousapps.dedebug.DeDebugSettingsPlugin"
 
     displayName = "DeDebug Gradle Plugin"
