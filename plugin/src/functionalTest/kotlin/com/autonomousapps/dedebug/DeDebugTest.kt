@@ -137,7 +137,4 @@ internal class DeDebugTest : AbstractFunctionalTest() {
     assertThat(result.task(":features:one:compileReleaseKotlin")!!.outcome).isEqualTo(TaskOutcome.NO_SOURCE)
     assertThat(result.task(":features:two:compileReleaseKotlin")!!.outcome).isEqualTo(TaskOutcome.NO_SOURCE)
   }
-
-  // TODO:
-  //  1. Handle `androidTestRuntimeOnly(androidx.compose.ui:ui-test-manifest)` requirement for some android tests
 }

@@ -29,13 +29,13 @@ internal class DeDebugFixture(
       }
       .withAndroidSubproject("app") {
         sources = appSources
+        manifest = AndroidManifest.simpleApp()
         withBuildScript {
           plugins(ANDROID_APP)
           android = AndroidBlock(
             namespace = "com.example.app",
             compileSdkVersion = COMPILE_SDK,
           )
-          manifest = AndroidManifest.simpleApp()
           dependencies(
             // validating fallback support
             implementation(":features:one"),
