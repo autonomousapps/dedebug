@@ -75,6 +75,10 @@ gradleTestKitSupport {
 }
 
 dependencies {
+  implementation(gradleApi()) {
+    because("Automatically adding this has been disabled in gradle.properties")
+  }
+
   compileOnly(libs.agp.api) {
     because("Consumers should break if they don't manage their classpaths correctly.")
   }
