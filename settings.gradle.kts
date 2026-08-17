@@ -1,6 +1,8 @@
 // Copyright (c) 2026. Tony Robalik.
 // SPDX-License-Identifier: Apache-2.0
 pluginManagement {
+  //includeBuild("../dependency-analysis-gradle-plugin") // uncomment this line and point to actual DAGP clone
+
   repositories {
     mavenCentral()
     gradlePluginPortal()
