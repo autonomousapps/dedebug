@@ -8,7 +8,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.gradle.develocity") version "4.2.2"
+  id("com.gradle.develocity") version "4.5.0"
   id("com.autonomousapps.build-health") version "3.18.0"
   id("org.jetbrains.kotlin.jvm") version "2.4.10" apply false
   id("com.autonomousapps.testkit") version "0.19" apply false
