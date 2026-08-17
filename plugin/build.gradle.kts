@@ -76,6 +76,7 @@ gradleTestKitSupport {
 
 dependencies {
   implementation(gradleApi()) {
+    // org.gradle.unsafe.suppress-gradle-api=true
     because("Automatically adding this has been disabled in gradle.properties")
   }
 
